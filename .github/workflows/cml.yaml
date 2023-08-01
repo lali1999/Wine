@@ -25,7 +25,7 @@ jobs:
           cat metrics.txt >> report.md
 
           echo "Data visualization plots" >> report.md
-          cml publish feature_importance.png >> report.md
-          cml publish residuals.png >> report.md
+          cat feature_importance.png >> report.md
+          cat residuals.png >> report.md
 
           cml comment create report.md
