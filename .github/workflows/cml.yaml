@@ -22,17 +22,10 @@ jobs:
           # Your ML workflow goes here
           pip install -r requirements.txt
           python train.py
-
-          -name : check if file exists
-          run : |
-            if [ -f "./feature_importance.png"]; then
-              echo "file exists"
-            else
-              echo "File do not exist"
-              
+            
           echo "Model Metrics" > report.md
           cat metrics.txt >> report.md
 
           echo "## Data viz" >> report.md
-          echo "![](./feature_importance.png)" >> report.md
+          cml-publish feature_importance.png --md >> report.png
           cml comment create report.md
