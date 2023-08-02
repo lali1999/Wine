@@ -23,6 +23,13 @@ jobs:
           pip install -r requirements.txt
           python train.py
 
+          -name : check if file exists
+          run : |
+            if [ -f "./feature_importance.png"]; then
+              echo "file exists"
+            else
+              echo "File do not exist"
+              
           echo "Model Metrics" > report.md
           cat metrics.txt >> report.md
 
