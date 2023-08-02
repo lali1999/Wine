@@ -27,7 +27,12 @@ jobs:
           cat metrics.txt >> report.md
 
           echo "## Data viz" >> report.md
-          cml-publish feature_importance.png --md >> report.md
-          cml-publish residuals.png --md > report.md
-
-          cml-send-comment report.md
+          - name: Feature Importance Plot
+            uses: cml-actions/comment@v1
+            with:
+              message: "![inline](./feature_importance.png)"
+          - name: Residual Plot
+            uses: cml-actions/comment@v1
+            with:
+              message: "![inline](./residuals.png)"
+          cml comment create report.md
